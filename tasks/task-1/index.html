@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perform currency conversions quickly with our Currency Converter tool. Convert between different currencies with real-time exchange rates.">
+  <meta name="keywords" content="currency converter, exchange rates, currency conversion, USD to INR, currency calculator">
+  <meta name="author" content="Prashant Gupta (@shyamgupta)">
+  <title>Task 1: Currency Convertor</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body class="h-full overflow-hidden relative">
+  <section class="min-w-full h-full text-white bg-[#FF7601]  bottom-0">
+    <div class="max-w-sm h-full m-auto px-2 bg-[#090A0A]">
+      <main class="w-full h-full">
+        <div class="h-full flex flex-col items-center justify-end py-4">
+          <!-- CURRENCY CONVERTOR SCREEN -->
+          <div class="w-full h-full pt-2">
+            <h1 class="pb-8 text-center text-lg">Currency Converter</h1>
+            <div class=" relative flex flex-col justify-end py- gap-[1px]">
+              <!-- FROM -->
+              <div class="flex flex-row gap-[1px]">
+                <!-- CURRENCY CODE -->
+                <div id="currency-code-input" ms-
+                  class="currency-code px-6 py-4 rounded-2xl bg-[#191919] border border-transparent focus:border-[#FE5707]"
+                  tabindex="0" onclick="toggleKeypad('currency')">USD
+                </div>
+                <!-- CURRENCY INPUT -->
+                <div class="flex flex-row w-full px-4 rounded-2xl bg-[#191919] items-center justify-between"
+                  onclick="toggleKeypad('num')">
+                  <span class="text-xs text-[#6D6D6D]">From</span>
+                  <div id="currency-input" class="font-bold text-xl">1</div>
+                </div>
+              </div>
+              <!-- TO -->
+              <div class="flex flex-row gap-[1px]">
+                <!-- CURRENCY CODE -->
+                <div id="currency-code-output"
+                  class="currency-code px-6 py-4 rounded-2xl bg-[#FE5707] border border-transparent focus:border-white"
+                  tabindex="0" onclick="toggleKeypad('currency')">INR
+                </div>
+                <!-- CURRENCY RESULT -->
+                <div class="flex flex-row w-full px-4 rounded-2xl bg-[#FE5707] items-center justify-between"
+                  onclick="toggleKeypad('num')">
+                  <span class="text-xs text-white">To</span>
+                  <div id="currency-output" class="font-bold text-xl"></div>
+                </div>
+              </div>
+              <!-- SWAP CURRENCIES ICON -->
+              <div id="swap-currencies"
+                class="absolute bottom-[4.5rem] left-16 p-2 border border-[#090A0A] rounded-full bg-[#FE5707]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                </svg>
+
+              </div>
+              <p id="time-last-update" class="text-center text-xs text-[#6D6D6D] py-2"></p>
+            </div>
+          </div>
+          <!-- KEYPAD BUTTONS -->
+          <div id="num-keypad" class="keypad grid grid-cols-4 grid-rows-4 gap-1 w-full h-full">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>AC</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>C</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <span></span>
+            <button>00</button>
+            <button>0</button>
+            <button>.</button>
+          </div>
+          <!-- CURRENCY KEYPAD -->
+          <div id="currency-keypad"
+            class="keypad min-w-full min-h-[314px] flex flex-col items-center justify-center gap-2 overflow-hidden hidden">
+            <!-- SEARCH -->
+            <div class="w-full flex flex-row gap-1">
+              <div class="p-4 rounded-xl bg-[#191919]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+              </div>
+              <div class="w-full">
+                <input id="search-currency-code" type="text" class="w-full p-4 rounded-xl outline-none bg-[#191919]">
+              </div>
+            </div>
+            <!-- CURRENCY BUTTONS -->
+            <div id="currency-btns" class="grid grid-cols-4 grid-rows- gap-1 w-full h-full overflow-y-scroll">
+              <!-- max-w-72 -->
+              <button>AED</button>
+              <button>AFN</button>
+              <button>ALL</button>
+              <button>AMD</button>
+              <button>ANG</button>
+              <button>AOA</button>
+              <button>ARS</button>
+              <button>AUD</button>
+              <button>AWG</button>
+              <button>AZN</button>
+              <button>BAM</button>
+              <button>BBD</button>
+              <button>BDT</button>
+              <button>BGN</button>
+              <button>BHD</button>
+              <button>BIF</button>
+              <button>BMD</button>
+              <button>BND</button>
+              <button>BOB</button>
+              <button>BRL</button>
+              <button>BSD</button>
+              <button>BTN</button>
+              <button>BWP</button>
+              <button>BYN</button>
+              <button>BZD</button>
+              <button>CAD</button>
+              <button>CDF</button>
+              <button>CHF</button>
+              <button>CLP</button>
+              <button>CNY</button>
+              <button>COP</button>
+              <button>CRC</button>
+              <button>CUP</button>
+              <button>CVE</button>
+              <button>CZK</button>
+              <button>DJF</button>
+              <button>DKK</button>
+              <button>DOP</button>
+              <button>DZD</button>
+              <button>EGP</button>
+              <button>ERN</button>
+              <button>ETB</button>
+              <button>EUR</button>
+              <button>FJD</button>
+              <button>FKP</button>
+              <button>FOK</button>
+              <button>GBP</button>
+              <button>GEL</button>
+              <button>GGP</button>
+              <button>GHS</button>
+              <button>GIP</button>
+              <button>GMD</button>
+              <button>GNF</button>
+              <button>GTQ</button>
+              <button>GYD</button>
+              <button>HKD</button>
+              <button>HNL</button>
+              <button>HRK</button>
+              <button>HTG</button>
+              <button>HUF</button>
+              <button>IDR</button>
+              <button>ILS</button>
+              <button>IMP</button>
+              <button>INR</button>
+              <button>IQD</button>
+              <button>IRR</button>
+              <button>ISK</button>
+              <button>JEP</button>
+              <button>JMD</button>
+              <button>JOD</button>
+              <button>JPY</button>
+              <button>KES</button>
+              <button>KGS</button>
+              <button>KHR</button>
+              <button>KID</button>
+              <button>KMF</button>
+              <button>KRW</button>
+              <button>KWD</button>
+              <button>KYD</button>
+              <button>KZT</button>
+              <button>LAK</button>
+              <button>LBP</button>
+              <button>LKR</button>
+              <button>LRD</button>
+              <button>LSL</button>
+              <button>LYD</button>
+              <button>MAD</button>
+              <button>MDL</button>
+              <button>MGA</button>
+              <button>MKD</button>
+              <button>MMK</button>
+              <button>MNT</button>
+              <button>MOP</button>
+              <button>MRU</button>
+              <button>MUR</button>
+              <button>MVR</button>
+              <button>MWK</button>
+              <button>MXN</button>
+              <button>MYR</button>
+              <button>MZN</button>
+              <button>NAD</button>
+              <button>NGN</button>
+              <button>NIO</button>
+              <button>NOK</button>
+              <button>NPR</button>
+              <button>NZD</button>
+              <button>OMR</button>
+              <button>PAB</button>
+              <button>PEN</button>
+              <button>PGK</button>
+              <button>PHP</button>
+              <button>PKR</button>
+              <button>PLN</button>
+              <button>PYG</button>
+              <button>QAR</button>
+              <button>RON</button>
+              <button>RSD</button>
+              <button>RUB</button>
+              <button>RWF</button>
+              <button>SAR</button>
+              <button>SBD</button>
+              <button>SCR</button>
+              <button>SDG</button>
+              <button>SEK</button>
+              <button>SGD</button>
+              <button>SHP</button>
+              <button>SLE</button>
+              <button>SLL</button>
+              <button>SOS</button>
+              <button>SRD</button>
+              <button>SSP</button>
+              <button>STN</button>
+              <button>SYP</button>
+              <button>SZL</button>
+              <button>THB</button>
+              <button>TJS</button>
+              <button>TMT</button>
+              <button>TND</button>
+              <button>TOP</button>
+              <button>TRY</button>
+              <button>TTD</button>
+              <button>TVD</button>
+              <button>TWD</button>
+              <button>TZS</button>
+              <button>UAH</button>
+              <button>UGX</button>
+              <button>USD</button>
+              <button>UYU</button>
+              <button>UZS</button>
+              <button>VES</button>
+              <button>VND</button>
+              <button>VUV</button>
+              <button>WST</button>
+              <button>XAF</button>
+              <button>XCD</button>
+              <button>XDR</button>
+              <button>XOF</button>
+              <button>XPF</button>
+              <button>YER</button>
+              <button>ZAR</button>
+              <button>ZMW</button>
+              <button>ZWL</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <script>
+    const keypad = document.querySelectorAll('.keypad');
+    const num_keypad = document.querySelector('#num-keypad');
+    const num_keypad_btns = document.querySelectorAll('#num-keypad button');
+    const currency_keypad = document.querySelector('#currency-keypad');
+    const currency_keypad_btns = document.querySelectorAll('#currency-btns button');
+    const currency_code_input = document.querySelector('#currency-code-input');
+    const currency_code_output = document.querySelector('#currency-code-output');
+    const currency_input = document.querySelector('#currency-input');
+    const currency_output = document.querySelector('#currency-output');
+    const search_currency_code = document.querySelector('#search-currency-code');
+    const swap_currencies = document.querySelector("#swap-currencies");
+    const time_last_update = document.querySelector("#time-last-update");
+    let currencyFromCode = () => { return document.querySelector('#currency-code-input').innerText; };
+    let currencyToCode = () => { return document.querySelector('#currency-code-output').innerText; };
+    const num_regex = /^(?:\d+)$/;
+    let currencyCode = '';
+
+    // ONCLICK CURRENCY CODE
+    currency_code_input.addEventListener("click", () => { currencyCode = "input"; });
+    currency_code_output.addEventListener("click", () => { currencyCode = "output"; });
+
+    // TOGGLE KEYPAD
+    const toggleKeypad = (value) => {
+      currencyCode = value;
+      if (value === "currency") {
+        currencyCode = currency_code_input;
+        num_keypad.classList.add("hidden");
+        currency_keypad.classList.remove("hidden");
+        return;
+      }
+      else if (value === "num") {
+        currency_keypad.classList.add("hidden");
+        num_keypad.classList.remove("hidden");
+        return;
+      }
+      keypad.forEach((e) => {
+        e.classList.toggle("hidden");
+      });
+    };
+
+    // CONVERT CURRENCY
+    const convertCurrency = async () => {
+      const response = await fetch(`https://open.er-api.com/v6/latest/${currencyFromCode()}`);
+      const data = await response.json();
+      const rates = data.rates[currencyToCode()];
+      const finalValue = rates * currency_input.innerText;
+      currency_output.innerText = Number(finalValue.toFixed(2));
+      time_last_update.innerText = "Last updated: " + data.time_last_update_utc
+    };
+    convertCurrency();
+
+
+    const handleNumKeypadBtnsClick = (value) => {
+      if (value === 'AC') {
+        currency_input.innerText = 0;
+      }
+      else if (value === 'C' || value === "Backspace") {
+        currency_input.innerText = currency_input.innerText.slice(0, currency_input.innerText.length - 1);
+        if (currency_input.innerText === '') { currency_input.innerText = 0; }
+      }
+      else {
+        if (currency_input.innerText == '0' && value != '.') {
+          currency_input.innerText = value;
+        }
+        else {
+          currency_input.innerText += value;
+        }
+      }
+      convertCurrency();
+    };
+
+    // NUM KEYPAD BUTTONS ONCLICK
+    num_keypad_btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        handleNumKeypadBtnsClick(btn.innerText);
+      });
+    });
+
+    // window.addEventListener("keydown", e => handleNumKeypadBtnsClick(e.key));
+    window.addEventListener('keydown', (e) => {
+      if (num_regex.test(e.key) || e.key === "Backspace") {
+        handleNumKeypadBtnsClick(e.key);
+      }
+    });
+
+
+    // CURRENCY BUTTONS ONCLICK
+    currency_keypad_btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (currencyCode === "output") {
+          currency_code_output.innerText = btn.innerText;
+        }
+        else {
+          currency_code_input.innerText = btn.innerText;
+        }
+        convertCurrency();
+      });
+    });
+
+    // SEARCH CURRENCIES
+    search_currency_code.addEventListener('keyup', (event) => {
+      eventText = document.querySelector('#search-currency-code').value.toLowerCase();
+      console.log(eventText);
+      currency_keypad_btns.forEach((btn) => {
+        if (!btn.innerText.toLowerCase().includes(eventText)) {
+          btn.classList.add("hidden");
+        }
+        else {
+          btn.classList.remove("hidden");
+        }
+      });
+    });
+
+    // SWAP CURRENCIES
+    swap_currencies.addEventListener('click', () => {
+      const tempValue = document.querySelector('#currency-code-input').innerText;
+      document.querySelector('#currency-code-input').innerText = document.querySelector('#currency-code-output').innerText;
+      document.querySelector('#currency-code-output').innerText = tempValue;
+      convertCurrency();
+    })
+
+  </script>
+
+</body>
+
+</html>
