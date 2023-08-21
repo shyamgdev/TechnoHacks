@@ -2,7 +2,7 @@
 
 This is a simple web application that allows users to convert currency values between different currencies.
 
-Demo: https://technohacks.netlify.app/tasks/level-1/task-1/
+Demo: https://technohacksinternship.netlify.app/tasks/task-1/
 
 ## Description
 
