@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Perform currency conversions quickly with our Currency Converter tool. Convert between different currencies with real-time exchange rates.">
-  <meta name="keywords" content="currency converter, exchange rates, currency conversion, USD to INR, currency calculator">
+  <meta name="description"
+    content="Perform currency conversions quickly with our Currency Converter tool. Convert between different currencies with real-time exchange rates.">
+  <meta name="keywords"
+    content="currency converter, exchange rates, currency conversion, USD to INR, currency calculator">
   <meta name="author" content="Prashant Gupta (@shyamgupta)">
   <title>Task 1: Currency Convertor</title>
   <link rel="stylesheet" href="./index.css">
@@ -310,12 +312,15 @@
 
     // CONVERT CURRENCY
     const convertCurrency = async () => {
+      // currency_keypad.classList.add("disabled");
+      currency_keypad_btns.forEach((btn) => { btn.disabled = true; });
       const response = await fetch(`https://open.er-api.com/v6/latest/${currencyFromCode()}`);
       const data = await response.json();
       const rates = data.rates[currencyToCode()];
       const finalValue = rates * currency_input.innerText;
       currency_output.innerText = Number(finalValue.toFixed(2));
-      time_last_update.innerText = "Last updated: " + data.time_last_update_utc
+      time_last_update.innerText = "Last updated: " + data.time_last_update_utc;
+      currency_keypad_btns.forEach((btn) => { btn.disabled = false; });
     };
     convertCurrency();
 
